@@ -1,0 +1,12 @@
+[package]
+name = "actix-proxy"
+version = "0.1.0"
+authors = ["Belousow Makc <lib.bmw@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+actix = "0.8.3"
+actix-web = "1.0.0"
+actix-rt = "0.2.2"
+futures = "0.1.27"
+actix_derive = "0.4.0"
