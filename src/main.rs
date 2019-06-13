@@ -53,13 +53,15 @@ impl Actor for Proxy {
 impl<T> Handler<T> for Proxy 
 where
     T: Message + Send + 'static,
-    <T as Message>::Result: MessageResponse<Upstream, T> + Send
+    <T as Message>::Result: MessageResponse<Upstream, T> + Send,
+    <T as Message>::Result: MessageResponse<Proxy, T>,
+    Upstream: Handler<T>
 {
     type Result = <T as Message>::Result;
 
     fn handle(&mut self, msg: T, _: &mut Context<Self>) -> Self::Result {
-        // Box::new(self.addr.send(msg))
-        Err("Error".to_string())
+        self.addr.send(msg)
+//        Err("Error".to_string())
     }
 }
 
